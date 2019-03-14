@@ -18,5 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         //sets Title of App Off
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        this.setContentView(new GameSurface(this));
     }
 }
