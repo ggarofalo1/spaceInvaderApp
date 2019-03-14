@@ -47,7 +47,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         }
         return false;
     }
-
+//something
 
     @Override
     public void draw(Canvas canvas)  {
