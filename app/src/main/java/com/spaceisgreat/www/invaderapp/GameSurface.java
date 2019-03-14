@@ -33,6 +33,20 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         this.player.update();
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            int x=  (int)event.getX();
+            int y = (int)event.getY();
+
+            int movingVectorX =x-  this.player.getX() ;
+            int movingVectorY =y-  this.player.getY() ;
+
+            this.player.setMovingVector(movingVectorX,movingVectorY);
+            return true;
+        }
+        return false;
+    }
 
 
     @Override
@@ -45,7 +59,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Bitmap playerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.shuttle50x50x4x4);
+        Bitmap playerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rocket50x50x4x4);
         this.player = new Player(this,playerBitmap1,50,50);
 
         this.gameThread = new GameThread(this,holder);
