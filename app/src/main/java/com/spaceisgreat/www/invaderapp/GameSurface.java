@@ -8,6 +8,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+/*
+simulates the surface of the game is an extension of surface view
+ */
+
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
 
@@ -41,8 +45,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Bitmap PlayerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.shuttle2);
-        this.player = new Player(this,PlayerBitmap1,100,50);
+        Bitmap playerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.shuttle50x503x4);
+        this.player = new Player(this,playerBitmap1,100,100);
 
         this.gameThread = new GameThread(this,holder);
         this.gameThread.setRunning(true);

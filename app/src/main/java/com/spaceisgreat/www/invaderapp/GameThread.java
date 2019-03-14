@@ -3,6 +3,10 @@ package com.spaceisgreat.www.invaderapp;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+/*
+controls game surface updates
+ */
+
 public class GameThread extends Thread {
 
     private boolean running;

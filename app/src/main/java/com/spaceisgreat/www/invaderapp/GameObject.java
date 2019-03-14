@@ -1,4 +1,5 @@
 package com.spaceisgreat.www.invaderapp;
+
 import android.graphics.Bitmap;
 
 public abstract class GameObject {
@@ -59,4 +60,3 @@ public abstract class GameObject {
     }
 
 }
-
