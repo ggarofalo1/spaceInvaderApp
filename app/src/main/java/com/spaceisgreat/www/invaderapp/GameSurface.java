@@ -18,6 +18,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private GameThread gameThread;
 
     private Player player;
+    private Rock rock;
 
     public GameSurface(Context context)  {
         super(context);
@@ -47,7 +48,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         }
         return false;
     }
-//something
 
     @Override
     public void draw(Canvas canvas)  {
@@ -61,6 +61,9 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         Bitmap playerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rocket50x50x4x4);
         this.player = new Player(this,playerBitmap1,50,50);
+
+        Bitmap rockBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rock50x50);
+        this.rock = new Rock(this,rockBitmap1,50,50);
 
         this.gameThread = new GameThread(this,holder);
         this.gameThread.setRunning(true);
