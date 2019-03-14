@@ -36,7 +36,7 @@ public class Player extends GameObject {
     private GameSurface gameSurface;
 
     public Player(GameSurface gameSurface, Bitmap image, int x, int y) {
-        super(image, 4, 3, x, y);
+        super(image, 4, 4, x, y);
 
         this.gameSurface= gameSurface;
 
