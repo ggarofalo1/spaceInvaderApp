@@ -1,0 +1,22 @@
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- These settings headers are only used on tablets. -->
+
+    <!--<div>Icons made by <a href="https://www.flaticon.com/authors/egor-rumyantsev" title="Egor Rumyantsev">Egor Rumyantsev</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+    <header
+        android:fragment="com.spaceisgreat.www.invaderapp.SettingsActivity$GeneralPreferenceFragment"
+        android:icon="@drawable/settings_work_tool1"
+        android:title="@string/pref_header_general" />
+
+    <!--<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+    <header
+        android:fragment="com.spaceisgreat.www.invaderapp.SettingsActivity$NotificationPreferenceFragment"
+        android:icon="@drawable/trophy1"
+        android:title="@string/pref_header_notifications" />
+
+    <header
+        android:fragment="com.spaceisgreat.www.invaderapp.SettingsActivity$DataSyncPreferenceFragment"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:title="@string/pref_header_data_sync" />
+
+</preference-headers>
