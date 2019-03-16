@@ -73,12 +73,12 @@ public class Rock extends GameObject {
         double movingVectorLength = Math.sqrt(movingVectorX* movingVectorX + movingVectorY*movingVectorY);
 
         // Calculate the new position of the game character.
-        this.x = x +  (int)(distance* movingVectorX / movingVectorLength);
-        this.y = y +  (int)(distance* movingVectorY / movingVectorLength);
+        //this.x = x +  (int)(distance* movingVectorX / movingVectorLength);
+        //this.y = y +  (int)(distance* movingVectorY / movingVectorLength);
 
         // When the game's character touches the edge of the screen, then change direction
 
-        if(this.x < 0 )  {
+        /*if(this.x < 0 )  {
             this.x = 0;
             this.movingVectorX = - this.movingVectorX;
         } else if(this.x > this.gameSurface.getWidth() -width)  {
@@ -92,10 +92,8 @@ public class Rock extends GameObject {
         } else if(this.y > this.gameSurface.getHeight()- height)  {
             this.y= this.gameSurface.getHeight()- height;
             this.movingVectorY = - this.movingVectorY ;
-        }
+        }*/
 
-        this.rowUsing = ROW_ONE;
-        // rowUsing
     }
 
     public void draw(Canvas canvas)  {

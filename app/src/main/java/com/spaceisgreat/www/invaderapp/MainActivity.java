@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     // used to identify the request for using external storage, which
     // the save image feature needs
     private static final int SAVE_RECORD_PERMISSION_REQUEST_CODE = 1;
+    GameSurface thegame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        this.setContentView(new GameSurface(this));
+        //run the code for the game
+        thegame = new GameSurface(this);
+        this.setContentView(thegame);
 
         // initialize acceleration values
         acceleration = 0.00f;
@@ -61,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.newgame:
                 //Do something for help
+                thegame.startgame(0);
+                thegame.endPlayer();
+                thegame.startPlayer();
                 Toast.makeText(getApplicationContext(), "New Game Started", Toast.LENGTH_LONG).show();
                 break;
             case R.id.settings:
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        thegame.gamerunning(true);
         enableAccelerometerListening(); // listen for shake event
     }
 
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+        thegame.gamerunning(false);
         disableAccelerometerListening(); // stop listening for shake
     }
 
