@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -41,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         //run the code for the game
         thegame = new GameSurface(this);
-        this.setContentView(thegame);
+        this.setContentView(R.layout.activity_main);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        //setSupportActionBar(toolbar);
 
         // initialize acceleration values
         acceleration = 0.00f;
@@ -64,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.newgame:
                 //Do something for help
-                thegame.startgame(0);
-                thegame.endPlayer();
-                thegame.startPlayer();
+                thegame = new GameSurface(this);
+                this.setContentView(thegame);
                 Toast.makeText(getApplicationContext(), "New Game Started", Toast.LENGTH_LONG).show();
                 break;
             case R.id.settings:
                 //start settings activity
+                this.setContentView(R.layout.activity_main);
                 Intent settings = new Intent(this, SettingsActivity.class);
                 startActivity(settings);
                 break;

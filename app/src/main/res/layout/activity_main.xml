@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    app:theme = "@style/CustomToolBarStyle"
-    app:popupTheme="@style/CustomPopupStyle">
+    android:layout_height="match_parent">
+    <!--<include
+        layout="@layout/toolbar_app_bar"
+        android:id="@+id/app_bar">
+
+    </include>-->
 
 
 </android.support.constraint.ConstraintLayout>
