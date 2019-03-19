@@ -138,9 +138,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         this.player = new Player(this,playerBitmap1,50,50);
     }
 
-    public void superUsed() {
-        for(int i = 0; i < numRocks; i++){
-
-        }
-    }
+/*    public void superUsed() {
+        for(int i = 0; i < numRocks; i++)
+    }*/
 }
