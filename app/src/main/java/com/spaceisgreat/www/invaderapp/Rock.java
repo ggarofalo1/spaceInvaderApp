@@ -18,8 +18,8 @@ public class Rock extends GameObject {
     // Velocity of game character (pixel/millisecond)
     public static final float VELOCITY = 0.1f;
 
-    private int movingVectorX = 10;
-    private int movingVectorY = 5;
+    private int movingVectorX = 0;
+    private int movingVectorY = 50;
 
     private long lastDrawNanoTime =-1;
 
@@ -69,16 +69,15 @@ public class Rock extends GameObject {
 
         // Distance moves
         float distance = VELOCITY * deltaTime;
-
         double movingVectorLength = Math.sqrt(movingVectorX* movingVectorX + movingVectorY*movingVectorY);
 
         // Calculate the new position of the game character.
-        //this.x = x +  (int)(distance* movingVectorX / movingVectorLength);
-        //this.y = y +  (int)(distance* movingVectorY / movingVectorLength);
+        this.x = x +  (int)(distance* movingVectorX / movingVectorLength);
+        this.y = y +  (int)(distance* movingVectorY / movingVectorLength);
 
         // When the game's character touches the edge of the screen, then change direction
 
-        /*if(this.x < 0 )  {
+        if(this.x < 0 )  {
             this.x = 0;
             this.movingVectorX = - this.movingVectorX;
         } else if(this.x > this.gameSurface.getWidth() -width)  {
@@ -92,7 +91,7 @@ public class Rock extends GameObject {
         } else if(this.y > this.gameSurface.getHeight()- height)  {
             this.y= this.gameSurface.getHeight()- height;
             this.movingVectorY = - this.movingVectorY ;
-        }*/
+        }
 
     }
 
@@ -103,8 +102,7 @@ public class Rock extends GameObject {
         this.lastDrawNanoTime= System.nanoTime();
     }
 
-    public void setMovingVector(int movingVectorX, int movingVectorY)  {
-        this.movingVectorX= movingVectorX;
+    public void setMovingVector(int movingVectorY)  {
         this.movingVectorY = movingVectorY;
     }
 }

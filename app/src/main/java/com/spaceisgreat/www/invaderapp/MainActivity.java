@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean dialogOnScreen = false;
 
     // value used to determine whether user shook the device to erase
-    private static final int ACCELERATION_THRESHOLD = 100000;
+    private static final int ACCELERATION_THRESHOLD = 50000;
 
     // used to identify the request for using external storage, which
     // the save image feature needs
@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 thegame.startgame(0);
                 thegame.endPlayer();
                 thegame.startPlayer();
+                thegame.endEnemies();
+                thegame.startEnemies();
                 Toast.makeText(getApplicationContext(), "New Game Started", Toast.LENGTH_LONG).show();
                 break;
             case R.id.settings:
@@ -153,9 +155,10 @@ public class MainActivity extends AppCompatActivity {
                                 (currentAcceleration - lastAcceleration);
 
                         // if the acceleration is above a certain threshold
-                        if (acceleration > ACCELERATION_THRESHOLD)
+                        if (acceleration > ACCELERATION_THRESHOLD) {
+                            thegame.superUsed();
                             //use supper if super is full
-                            Toast.makeText(getApplicationContext(), "Super Used", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 

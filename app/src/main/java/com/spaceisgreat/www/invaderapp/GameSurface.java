@@ -8,6 +8,10 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.util.Log;
+import android.widget.Toast;
+
+
+import java.util.Random;
 
 /*
 simulates the surface of the game is an extension of surface view
@@ -15,11 +19,10 @@ simulates the surface of the game is an extension of surface view
 
 public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
-
     private GameThread gameThread;
-
+    private int numSupers = 2;
     private Player player;
-    private Rock rock;
+    private Rock[] rocks;
     int gamestart =0;
 
     public void gamerunning(boolean run){
@@ -42,16 +45,21 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void update()  {
         if (gamestart == 1) {
             this.player.update();
-            this.rock.update();
+            for(int i = 0; i < 3; i++) {
+                this.rocks[i].update();
+            }
+
             int playerX = this.player.getX();
             int playerY = this.player.getY();
-            int rockX = this.rock.getX();
-            int rockY = this.rock.getY();
-            int xDif = playerX - rockX;
-            int yDif = playerY - rockY;
+            for(int i = 0; i < 3; i++) {
+                int rockX = this.rocks[i].getX();
+                int rockY = this.rocks[i].getY();
+                int xDif = playerX - rockX;
+                int yDif = playerY - rockY;
 
-            if((-150 < xDif && xDif < 150) && (yDif > -150 && yDif < 150)){
-                endPlayer();
+                if ((-150 < xDif && xDif < 150) && (yDif > -150 && yDif < 150)) {
+                    endPlayer();
+                }
             }
         }
     }
@@ -86,17 +94,16 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
 
         this.player.draw(canvas);
-        this.rock.draw(canvas);
+        for(int i = 0; i < 3; i++) {
+            this.rocks[i].draw(canvas);
+        }
     }
 
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         startPlayer();
-
-        Bitmap rockBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rock50x50);
-        this.rock = new Rock(this,rockBitmap1,500,50);
-
+        startEnemies();
         this.gameThread = new GameThread(this,holder);
         this.gameThread.setRunning(true);
         this.gameThread.start();
@@ -130,7 +137,22 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         Bitmap playerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rocket50x50x4x4);
         this.player = new Player(this,playerBitmap1,475,1300);
     }
-
+    public void startEnemies() {
+        int someX;
+        Random generator = new Random();
+        Bitmap rockBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rock50x50);
+        rocks = new Rock[3];
+        for(int i = 0; i < 3; i++) {
+            someX = generator.nextInt(1500) + 1;
+            rocks[i] = new Rock(this, rockBitmap1, someX, 0);
+        }
+    }
+    public void endEnemies() {
+        for (int i = 0; i < 3; i++) {
+            Bitmap deadRock = BitmapFactory.decodeResource(this.getResources(),R.drawable.deadplayer);
+            this.rocks[i] = new Rock(this, deadRock, 50, 50);
+        }
+    }
 
     //kills the player
     public void endPlayer() {
@@ -138,7 +160,12 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         this.player = new Player(this,playerBitmap1,50,50);
     }
 
-/*    public void superUsed() {
-        for(int i = 0; i < numRocks; i++)
-    }*/
+    public void superUsed() { //all current rocks go off the screen
+        if(this.numSupers > 0) {
+            this.numSupers -= 1;
+            String superMsg = String.format("You now have %d super(s) left", this.numSupers);
+            Toast.makeText(getContext(), superMsg, Toast.LENGTH_SHORT).show();
+            endEnemies();
+        }
+    }
 }
