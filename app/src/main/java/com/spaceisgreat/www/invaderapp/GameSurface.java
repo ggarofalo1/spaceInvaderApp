@@ -43,6 +43,16 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         if (gamestart == 1) {
             this.player.update();
             this.rock.update();
+            int playerX = this.player.getX();
+            int playerY = this.player.getY();
+            int rockX = this.rock.getX();
+            int rockY = this.rock.getY();
+            int xDif = playerX - rockX;
+            int yDif = playerY - rockY;
+
+            if((-150 < xDif && xDif < 150) && (yDif > -150 && yDif < 150)){
+                endPlayer();
+            }
         }
     }
 
@@ -126,5 +136,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void endPlayer() {
         Bitmap playerBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.deadplayer);
         this.player = new Player(this,playerBitmap1,50,50);
+    }
+
+    public void superUsed() {
+        for(int i = 0; i < numRocks; i++){
+
+        }
     }
 }
