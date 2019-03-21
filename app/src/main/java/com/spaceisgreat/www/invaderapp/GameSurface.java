@@ -69,7 +69,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         gamestart = num;
     }
 
-    @Override
+
     public boolean onTouchEvent(MotionEvent event) {
         if (gamestart == 1) {
 

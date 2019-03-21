@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -31,20 +32,16 @@ public class MainActivity extends AppCompatActivity {
     // the save image feature needs
     private static final int SAVE_RECORD_PERMISSION_REQUEST_CODE = 1;
     GameSurface thegame;
+    View game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //sets game to fullscreen
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         //run the code for the game
         thegame = new GameSurface(this);
-        this.setContentView(thegame);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
-        //setSupportActionBar(toolbar);
+        game = findViewById(R.id.game);
+        //this.setContentView(thegame);
 
         // initialize acceleration values
         acceleration = 0.00f;
@@ -65,8 +62,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId())
         {
+            case R.id.startgame:
+                //Do draw the game
+                this.setContentView(thegame);
+                break;
             case R.id.newgame:
-                //Do something for help
+                //Do something for create new players
                 thegame.startgame(0);
                 thegame.endPlayer();
                 thegame.startPlayer();
@@ -76,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.settings:
                 //start settings activity
-
-                Intent settings = new Intent(this, SettingsActivity.class);
+                Intent settings = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(settings);
                 break;
             case R.id.help:
@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        thegame.gamerunning(false);
+        //thegame.gamerunning(false);
         disableAccelerometerListening(); // stop listening for shake
     }
 
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         // stop listening for accelerometer events
         sensorManager.unregisterListener(sensorEventListener,
-                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
+                sensorManager.getDefaultSensor(Sensor.TYPE_ALL));
     }
 
     // event handler for accelerometer events
