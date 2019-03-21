@@ -8,13 +8,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -39,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         //sets game to fullscreen
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        //Display display = getWindowManager().getDefaultDisplay();
+        //Point size = new Point();
+        //display.getSize(size);
+        //sWidth = size.x;
+        //sHeight = size.y;
         //run the code for the game
         thegame = new GameSurface(this);
         this.setContentView(thegame);
@@ -65,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId())
         {
-            case R.id.newgame:
-                //Do something for help
+            case R.id.newgame: //initiate the game
                 thegame.startgame(0);
                 thegame.endPlayer();
                 thegame.startPlayer();
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.settings:
                 //start settings activity
-
                 Intent settings = new Intent(this, SettingsActivity.class);
                 startActivity(settings);
                 break;

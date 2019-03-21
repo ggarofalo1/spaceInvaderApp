@@ -17,19 +17,18 @@ public class Rock extends GameObject {
 
     // Velocity of game character (pixel/millisecond)
     public static final float VELOCITY = 0.1f;
-
+    private float scaleFactor = 1.50f;
     private int movingVectorX = 0;
     private int movingVectorY = 50;
-
     private long lastDrawNanoTime =-1;
 
     private GameSurface gameSurface;
 
     public Rock(GameSurface gameSurface, Bitmap image, int x, int y) {
+
         super(image, 1, 1, x, y);
 
         this.gameSurface= gameSurface;
-
         this.imagerock = new Bitmap[colCount]; //1
 
         for(int col = 0; col< this.colCount; col++ ) {
@@ -68,7 +67,7 @@ public class Rock extends GameObject {
         int deltaTime = (int) ((now - lastDrawNanoTime)/ 1000000 );
 
         // Distance moves
-        float distance = VELOCITY * deltaTime;
+        float distance = scaleFactor * VELOCITY * deltaTime;
         double movingVectorLength = Math.sqrt(movingVectorX* movingVectorX + movingVectorY*movingVectorY);
 
         // Calculate the new position of the game character.
@@ -85,12 +84,8 @@ public class Rock extends GameObject {
             this.movingVectorX = - this.movingVectorX;
         }
 
-        if(this.y < 0 )  {
-            this.y = 0;
-            this.movingVectorY = - this.movingVectorY;
-        } else if(this.y > this.gameSurface.getHeight()- height)  {
-            this.y= this.gameSurface.getHeight()- height;
-            this.movingVectorY = - this.movingVectorY ;
+        if(this.y > this.gameSurface.getHeight()- height)  {
+            this.y = -height;
         }
 
     }

@@ -30,7 +30,7 @@ public class Player extends GameObject {
 
     private int movingVectorX = 10;
     private int movingVectorY = 5;
-
+    private float scaleFactor = 1.2f;
     private long lastDrawNanoTime =-1;
 
     private GameSurface gameSurface;
@@ -90,7 +90,7 @@ public class Player extends GameObject {
         int deltaTime = (int) ((now - lastDrawNanoTime)/ 1000000 );
 
         // Distance moves
-        float distance = VELOCITY * deltaTime;
+        float distance = scaleFactor * VELOCITY * deltaTime;
 
         double movingVectorLength = Math.sqrt(movingVectorX* movingVectorX + movingVectorY*movingVectorY);
 

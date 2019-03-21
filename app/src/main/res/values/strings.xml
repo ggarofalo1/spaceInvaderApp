@@ -2,7 +2,7 @@
     <string name="app_name">InvaderApp</string>
     <string name="settings_name">Settings</string>
     <string name="help_name">Help</string>
-    <string name="new_name">New Game</string>
+    <string name="new_name">Reset Game</string>
     <string name="title_activity_settings_activityrly">Settings</string>
 
     <!-- Strings related to Settings -->
@@ -82,4 +82,5 @@
     <string name="pref_rock">This adjust how fast the rocks fall making the game harder to play.</string>
     <string name="pref_sum_dif">This changes how often the rocks spawn.</string>
     <string name="pref_sum_name">This sets what the score is recorded under.</string>
+    <string name="startgame_title">Start Game</string>
 </resources>
