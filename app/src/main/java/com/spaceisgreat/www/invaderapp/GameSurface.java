@@ -182,4 +182,14 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
             endEnemies();
         }
     }
+
+    public void stopGame() {
+        if (gameThread != null)
+            gameThread.setRunning(false);
+    }
+
+    public void releaseResources() {
+        //where the sound resources are released
+
+    }
 }

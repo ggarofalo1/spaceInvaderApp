@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity  extends FragmentActivity {
     private float acceleration;
     private float currentAcceleration;
     private float lastAcceleration;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //run the code for the game
-        thegame = new GameSurface(this);
-        game = findViewById(R.id.game);
+        //thegame = new GameSurface(this);
+        //game = findViewById(R.id.gameView);
         //this.setContentView(thegame);
 
         // initialize acceleration values
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        //thegame.gamerunning(false);
+        thegame.gamerunning(false);
         disableAccelerometerListening(); // stop listening for shake
     }
 

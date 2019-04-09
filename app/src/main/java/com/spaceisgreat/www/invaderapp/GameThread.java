@@ -16,6 +16,7 @@ public class GameThread extends Thread {
     public GameThread(GameSurface gameSurface, SurfaceHolder surfaceHolder)  {
         this.gameSurface= gameSurface;
         this.surfaceHolder= surfaceHolder;
+        this.running = true;
     }
 
     @Override
