@@ -106,11 +106,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        startPlayer();
-        startEnemies();
         this.gameThread = new GameThread(this,holder);
         this.gameThread.setRunning(true);
         this.gameThread.start();
+        rocks = new Rock[this.numRocks];
+
     }
 
     // Implements method of SurfaceHolder.Callback
@@ -122,11 +122,12 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry= true;
+        boolean retry = true;
         while(retry) {
             try {
-                this.gameThread.join();
                 this.gameThread.setRunning(false);
+                this.gameThread.join();
+                retry = false;
                 // Parent thread must wait until the end of GameThread.
             }catch(InterruptedException e) {
                 e.printStackTrace();
@@ -140,7 +141,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     }
     public void startEnemies() { //initializes the enemies
 
-        this.numRocks += 1;
         int someX;
         Random generator = new Random();
         Bitmap rockBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rock50x50);
@@ -149,7 +149,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         Point size = new Point();
         display.getSize(size);
         int width = size.x;
-        rocks = new Rock[this.numRocks];
         for(int i = 0; i < this.numRocks; i++) {
             someX = generator.nextInt(width) + 1;
             rocks[i] = new Rock(this, rockBitmap1, someX, -50);

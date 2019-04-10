@@ -1,30 +1,33 @@
 package com.spaceisgreat.www.invaderapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
+import android.support.v4.app.DialogFragment;
+
 
 public class MainActivity extends AppCompatActivity {
     private float acceleration;
     private float currentAcceleration;
     private float lastAcceleration;
     private boolean dialogOnScreen = false;
+    private Object pauseLock;
+    private boolean paused;
+    private boolean finished;
 
     // value used to determine whether user shook the device to erase
-    private static final int ACCELERATION_THRESHOLD = 50000;
+    private static final int ACCELERATION_THRESHOLD = 20000;
 
     // used to identify the request for using external storage, which
     // the save image feature needs
@@ -38,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         //run the code for the game
         thegame = new GameSurface(this);
-        game = findViewById(R.id.game);
-        //this.setContentView(thegame);
+        //game = findViewById(R.id.game);
+        this.setContentView(thegame);
 
         // initialize acceleration values
         acceleration = 0.00f;
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.space_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -60,10 +63,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId())
         {
-            case R.id.startgame:
-                //Do draw the game
-                this.setContentView(thegame);
-                break;
             case R.id.newgame:
                 //Do something for create new players
                 thegame.startgame(0);
@@ -75,12 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.settings:
                 //start settings activity
-                Intent settings = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(settings);
-                break;
-            case R.id.help:
-                //Do something for help
-                Toast.makeText(getApplicationContext(), "Help", Toast.LENGTH_SHORT).show();
+                SettingsDialogFragment settingsDialog = new SettingsDialogFragment();
+                FragmentManager fm = getSupportFragmentManager();
+                settingsDialog.show(fm, "Settings dialog");
                 break;
             default:
                 //error with selection
