@@ -64,13 +64,8 @@ public class MainActivity extends AppCompatActivity {
         switch(item.getItemId())
         {
             case R.id.newgame:
-                //Do something for create new players
-                thegame.startgame(0);
-                thegame.endPlayer();
-                thegame.startPlayer();
-                thegame.endEnemies();
-                thegame.startEnemies();
-                Toast.makeText(getApplicationContext(), "New Game Started", Toast.LENGTH_LONG).show();
+                //start new game
+                thegame.newGame();
                 break;
             case R.id.settings:
                 //start settings activity
