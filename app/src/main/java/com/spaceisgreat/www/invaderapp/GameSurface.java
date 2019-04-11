@@ -151,11 +151,17 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
             this.rocks[i].draw(canvas);
         }
 
+        //red square
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(getResources().getColor(R.color.timerbglowscore));
+        canvas.drawRect(r, paint);
 
         //timer text
+        textPaint.setTextSize((int) (TEXT_SIZE_PERCENT * screenHeight));
         textPaint.setColor(getResources().getColor(R.color.colorTimer));
         //textPaint.setStyle(Paint.Style.FILL);
         canvas.drawText(getResources().getString(R.string.time_format, timer), 800, 70, textPaint);
+
     }
 
     // Implements method of SurfaceHolder.Callback

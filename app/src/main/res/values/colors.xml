@@ -3,5 +3,8 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#0062A5</color>
     <color name="colorAccent">#CC9C29</color>
+
     <color name="colorTimer">#FFFFFF</color>
+    <color name="timerbglowscore">#DB562C</color>
+    <color name="timerbghighscore">#55C556</color>
 </resources>

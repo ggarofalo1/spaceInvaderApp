@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InvaderApp</string>
+    <string name="app_name">Invaders</string>
     <string name="settings_name">Game Settings</string>
     <string name="new_game">New game</string>
     <string name="pref_header_general">Game Settings</string>
