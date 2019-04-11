@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -122,6 +123,10 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas)  {
         super.draw(canvas);
 
+        Drawable d = getResources().getDrawable(R.drawable.spacebg, null);
+        d.setBounds(0, 0, screenWidth, screenHeight);
+        d.draw(canvas);
+
         // player
         this.player.draw(canvas);
 
@@ -129,6 +134,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         for(int i = 0; i < this.numRocks; i++) {
             this.rocks[i].draw(canvas);
         }
+
 
         //timer text
         textPaint.setColor(getResources().getColor(R.color.colorTimer));
