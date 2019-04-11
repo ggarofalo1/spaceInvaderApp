@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -37,13 +39,14 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private static String theUsername = "";
     int gamestart =0;
 
-    private double timer;
+    private double timer = 0.0;
     private double interval = .1;
     private boolean etimer = false;
     private Paint textPaint;
     private int screenWidth;
     private int screenHeight;
     public static final double TEXT_SIZE_PERCENT = 0.5 / 18;
+    public static final double BOX_SIZE_PERCENT = 2.0 / 18;
 
 
     public void gamerunning(boolean run){
@@ -119,13 +122,23 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         return false;
     }
 
+
     @Override
     public void draw(Canvas canvas)  {
         super.draw(canvas);
 
-        Drawable d = getResources().getDrawable(R.drawable.spacebg, null);
+        int margin = 10;
+        Rect r = new Rect((int)(screenWidth-300), margin, screenWidth-margin, (int)(100));
+        Drawable d;
+        Paint paint = new Paint();
+
+        d = getResources().getDrawable(R.drawable.spacebg, null);
         d.setBounds(0, 0, screenWidth, screenHeight);
         d.draw(canvas);
+
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.RED);
+        canvas.drawRect(r, paint);
 
         // player
         this.player.draw(canvas);
@@ -139,7 +152,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         //timer text
         textPaint.setColor(getResources().getColor(R.color.colorTimer));
         //textPaint.setStyle(Paint.Style.FILL);
-        canvas.drawText(getResources().getString(R.string.time_format, timer), 800, 50, textPaint);
+        canvas.drawText(getResources().getString(R.string.time_format, timer), 800, 70, textPaint);
     }
 
     // Implements method of SurfaceHolder.Callback
