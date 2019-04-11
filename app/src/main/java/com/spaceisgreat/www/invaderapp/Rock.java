@@ -17,7 +17,7 @@ public class Rock extends GameObject {
 
     // Velocity of game character (pixel/millisecond)
     public static final float VELOCITY = 0.1f;
-    private float scaleFactor = 1.50f;
+    private float difficultyMultiplier = 1.50f;
     private int movingVectorX = 0;
     private int movingVectorY = 50;
     private long lastDrawNanoTime =-1;
@@ -67,7 +67,7 @@ public class Rock extends GameObject {
         int deltaTime = (int) ((now - lastDrawNanoTime)/ 1000000 );
 
         // Distance moves
-        float distance = scaleFactor * VELOCITY * deltaTime;
+        float distance = difficultyMultiplier * VELOCITY * deltaTime;
         double movingVectorLength = Math.sqrt(movingVectorX* movingVectorX + movingVectorY*movingVectorY);
 
         // Calculate the new position of the game character.
@@ -100,4 +100,6 @@ public class Rock extends GameObject {
     public void setMovingVector(int movingVectorY)  {
         this.movingVectorY = movingVectorY;
     }
+    public void setXVector(int movingVectorX) { this.movingVectorX = movingVectorX; }
+    public void setDifficultyMultiplier(float difficultyMultiplier) { this.difficultyMultiplier = difficultyMultiplier; }
 }

@@ -30,7 +30,7 @@ public class Player extends GameObject {
 
     private int movingVectorX = 10;
     private int movingVectorY = 5;
-    private float scaleFactor = 1.2f;
+    private float scaleFactor = 2.0f;
     private long lastDrawNanoTime =-1;
 
     private GameSurface gameSurface;
