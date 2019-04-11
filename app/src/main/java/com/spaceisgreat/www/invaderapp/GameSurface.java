@@ -117,6 +117,9 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
                 return true;
             }
         }else{
+            if(theDifficulty == 3) {
+                Toast.makeText(getContext(), "EUROPEAN EXTREME IS ACTIVE", Toast.LENGTH_LONG).show();
+            }
             gamestart = 1;
         }
         return false;
