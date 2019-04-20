@@ -13,4 +13,7 @@
     <string name="accept_settings">Accept Changes</string>
     <string name="time_format">%.1f Seconds</string>
     <string name="username">Please enter a username</string>
+    <string name="play_game">Play Game</string>
+    <string name="invader">INVADER</string>
+    <string name="version">Version %.1f</string>
 </resources>

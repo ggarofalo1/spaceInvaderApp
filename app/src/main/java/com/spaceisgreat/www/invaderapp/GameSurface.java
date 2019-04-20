@@ -135,10 +135,12 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         Drawable d;
         Paint paint = new Paint();
 
+        //set background
         d = getResources().getDrawable(R.drawable.spacebg, null);
         d.setBounds(0, 0, screenWidth, screenHeight);
         d.draw(canvas);
 
+        //create red box for timer
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.RED);
         canvas.drawRect(r, paint);
