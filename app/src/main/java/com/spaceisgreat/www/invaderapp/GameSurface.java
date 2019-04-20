@@ -140,19 +140,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         d.setBounds(0, 0, screenWidth, screenHeight);
         d.draw(canvas);
 
-        //create red box for timer
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.RED);
-        canvas.drawRect(r, paint);
-
-        // player
-        this.player.draw(canvas);
-
-        //rocks- enemies
-        for(int i = 0; i < this.numRocks; i++) {
-            this.rocks[i].draw(canvas);
-        }
-
         //red square
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(getResources().getColor(R.color.timerbglowscore));
@@ -163,6 +150,15 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         textPaint.setColor(getResources().getColor(R.color.colorTimer));
         //textPaint.setStyle(Paint.Style.FILL);
         canvas.drawText(getResources().getString(R.string.time_format, timer), 800, 70, textPaint);
+
+        // player
+        this.player.draw(canvas);
+
+        //rocks- enemies
+        for(int i = 0; i < this.numRocks; i++) {
+            this.rocks[i].draw(canvas);
+        }
+
 
     }
 
