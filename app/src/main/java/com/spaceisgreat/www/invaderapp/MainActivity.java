@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        //thegame.gamerunning(false);
+        thegame.gamerunning(false);
         disableAccelerometerListening(); // stop listening for shake
     }
 

@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Invaders</string>
     <string name="settings_name">Game Settings</string>
-    <string name="new_game">New game</string>
+    <string name="new_game">New Game</string>
     <string name="pref_header_general">Game Settings</string>
     <string name="pref_header_notifications">Records</string>
     <string name="pref_difficulty">Game Difficulty</string>
-    <string name="pref_username">Highscore Username</string>
+    <string name="pref_username" translatable="false">Username</string>
     <string name="pref_sum_name">This sets what the score is recorded under.</string>
     <string name="startgame_title">Start Game</string>
     <string name="powerups">Powerups Available</string>
@@ -16,4 +16,6 @@
     <string name="play_game">Play Game</string>
     <string name="invader">INVADER</string>
     <string name="version">Version %.1f</string>
+    <string name="game_over">Game Over</string>
+    <string name="score">Score %.1f</string>
 </resources>

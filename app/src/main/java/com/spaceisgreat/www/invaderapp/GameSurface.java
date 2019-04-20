@@ -1,6 +1,7 @@
 package com.spaceisgreat.www.invaderapp;
 
 import android.app.AlertDialog;
+import android.content.ContentProvider;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -11,6 +12,9 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -31,6 +35,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private GameThread gameThread;
     private Player player;
     private Rock[] rocks;
+    private Context context;
 
     private static int theDifficulty = 1;
     private static int numAmmo = 1000;
@@ -58,6 +63,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
     public GameSurface(Context context)  {
         super(context);
+        this.context = context;
 
         // Make Game Surface focusable so it can handle events. .
         this.setFocusable(true);
@@ -66,6 +72,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
         // Sét callback.
         this.getHolder().addCallback(this);
+
+        newGame();
     }
 
     public void update()  {
@@ -117,10 +125,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
                 return true;
             }
         }else{
-            if(theDifficulty == 3) {
-                Toast.makeText(getContext(), "EUROPEAN EXTREME IS ACTIVE", Toast.LENGTH_LONG).show();
-            }
-            gamestart = 1;
+            gamestart = 1;  //if paused but user taps start game
         }
         return false;
     }
@@ -269,23 +274,18 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
     //pop up alerting the user
     public void gameOver(){
-        /*new AlertDialog.Builder(getContext())
-                .setTitle("Game Over")
-                .setMessage(String.format("You played for: %d seconds. Would you like to play agian?", this.timer))
 
-                // Specifying a listener allows you to take an action before dismissing the dialog.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        newGame();
-                    }
-                })
+        //start end game  dialog
+        EndGameDialogFragment endDialog = new EndGameDialogFragment();
+        FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
 
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();*/
+        //give score to dialog
+        Bundle args = new Bundle();
+        args.putDouble("timer", timer);
+        endDialog.setArguments(args);
 
+        endDialog.show(fm, "Game Over");
+        newGame();
     }
 
     public void newGame(){
