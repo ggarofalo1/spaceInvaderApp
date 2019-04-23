@@ -46,6 +46,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private double timer = 0.0;
     private double interval = .1;
     private boolean etimer = false;
+    private boolean superUsed = false;
     private Paint textPaint;
     private static int screenWidth;
     private static int screenHeight;
@@ -78,13 +79,18 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void update()  {
         if (gamestart == 1) {
             this.player.update();
-
-            for(int i = 0; i < numRocks; i++) {
-                if(timer % 3.0 == 0) {
-                    this.rocks[i].setDifficultyMultiplier(rocks[i].getDifficultyMultiplier() * 1.1f);
+            if(superUsed == false) {
+                for (int i = 0; i < numRocks; i++) {
+                    if (timer % 3.0 == 0) {
+                        this.rocks[i].setDifficultyMultiplier(rocks[i].getDifficultyMultiplier() * 1.1f);
+                    }
+                    this.rocks[i].update();
                 }
-                this.rocks[i].update();
+            } else {
+                startEnemies();
+                superUsed = false;
             }
+
             int playerX = this.player.getX();
             int playerY = this.player.getY();
 
@@ -261,6 +267,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
             String superMsg = String.format("You now have %d super(s) left", numSupers);
             Toast.makeText(getContext(), superMsg, Toast.LENGTH_SHORT).show();
             endEnemies();
+            superUsed = true;
         }
     }
 
