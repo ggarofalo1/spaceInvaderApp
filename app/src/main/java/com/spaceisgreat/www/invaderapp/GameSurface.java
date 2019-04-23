@@ -23,7 +23,6 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-
 import java.util.Random;
 
 /*
@@ -48,8 +47,8 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private double interval = .1;
     private boolean etimer = false;
     private Paint textPaint;
-    private int screenWidth;
-    private int screenHeight;
+    private static int screenWidth;
+    private static int screenHeight;
     public static final double TEXT_SIZE_PERCENT = 0.5 / 18;
     public static final double BOX_SIZE_PERCENT = 2.0 / 18;
 
@@ -79,7 +78,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void update()  {
         if (gamestart == 1) {
             this.player.update();
+
             for(int i = 0; i < numRocks; i++) {
+                if(timer % 3.0 == 0) {
+                    this.rocks[i].setDifficultyMultiplier(rocks[i].getDifficultyMultiplier() * 1.1f);
+                }
                 this.rocks[i].update();
             }
             int playerX = this.player.getX();
@@ -210,27 +213,32 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
+        screenWidth = size.x;
         for(int i = 0; i < numRocks; i++) {
-            someX = generator.nextInt(width) + 1;
+            someX = generator.nextInt(screenWidth/(i+1)) + 1;
             rocks[i] = new Rock(this, rockBitmap1, someX, -50);
             switch(theDifficulty) {
                 case 0:
                     System.out.println(theDifficulty);
                     break;
                 case 1:
+                    if(i % 2 == 0) {
+                        this.rocks[i].setXVector(50);
+                    }
+                    else {
+                        this.rocks[i].setXVector(-50);
+                    }
                     this.rocks[i].setDifficultyMultiplier(2.00f);
                     this.rocks[i].setMovingVector(200);
-                    this.rocks[i].setXVector(50);
                 case 2:
                     this.rocks[i].setDifficultyMultiplier(3.00f);
                     this.rocks[i].setMovingVector(200);
-                    this.rocks[i].setXVector(200);
-            }
-            if(i > 0) {
-                if((this.rocks[i-1].x - this.rocks[i].x) < 100) {
-                    this.rocks[i].x = someX + 150;
-                }
+                    if(i % 2 == 0) {
+                        this.rocks[i].setXVector(200);
+                    }
+                    else {
+                        this.rocks[i].setXVector(-200);
+                    }
             }
         }
     }

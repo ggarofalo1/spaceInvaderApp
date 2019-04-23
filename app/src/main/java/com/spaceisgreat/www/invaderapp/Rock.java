@@ -2,6 +2,7 @@ package com.spaceisgreat.www.invaderapp;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import java.util.Random;
 
 public class Rock extends GameObject {
 
@@ -102,4 +103,5 @@ public class Rock extends GameObject {
     }
     public void setXVector(int movingVectorX) { this.movingVectorX = movingVectorX; }
     public void setDifficultyMultiplier(float difficultyMultiplier) { this.difficultyMultiplier = difficultyMultiplier; }
+    public float getDifficultyMultiplier() { return this.difficultyMultiplier; }
 }
