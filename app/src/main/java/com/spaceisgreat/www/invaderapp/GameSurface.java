@@ -37,7 +37,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private Rock[] rocks;
     private Context context;
 
-    private static int theDifficulty = 1;
+    private static int theDifficulty = 0;
     private static int numAmmo = 1000;
     private static int numSupers = 2;
     private static int numRocks = 2;
@@ -79,13 +79,13 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void update()  {
         if (gamestart == 1) {
             this.player.update();
-            for(int i = 0; i < this.numRocks; i++) {
+            for(int i = 0; i < numRocks; i++) {
                 this.rocks[i].update();
             }
             int playerX = this.player.getX();
             int playerY = this.player.getY();
 
-            for(int i = 0; i < this.numRocks; i++) { //get distance between player and rocks
+            for(int i = 0; i < numRocks; i++) { //get distance between player and rocks
                 int rockX = this.rocks[i].getX();
                 int rockY = this.rocks[i].getY();
                 int xDif = playerX - rockX;
@@ -95,7 +95,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
                     //endPlayer();      //clears player
                     //endEnemies();    //clears enemies
                     etimer = true;  //ends timer
-                    gameOver();    //shows gameoveer popup
+                    gameOver();    //shows game over popup
                     gamestart = 0;   //stop update loop
                 }
             }
@@ -160,7 +160,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         this.player.draw(canvas);
 
         //rocks- enemies
-        for(int i = 0; i < this.numRocks; i++) {
+        for(int i = 0; i < numRocks; i++) {
             this.rocks[i].draw(canvas);
         }
 
@@ -215,14 +215,14 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
             someX = generator.nextInt(width) + 1;
             rocks[i] = new Rock(this, rockBitmap1, someX, -50);
             switch(theDifficulty) {
-                case 1:
+                case 0:
                     System.out.println(theDifficulty);
                     break;
-                case 2:
+                case 1:
                     this.rocks[i].setDifficultyMultiplier(2.00f);
                     this.rocks[i].setMovingVector(200);
                     this.rocks[i].setXVector(50);
-                case 3:
+                case 2:
                     this.rocks[i].setDifficultyMultiplier(3.00f);
                     this.rocks[i].setMovingVector(200);
                     this.rocks[i].setXVector(200);
@@ -251,7 +251,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     public void superUsed() { //all current rocks go off the screen
         if(numSupers > 0) {
             numSupers -= 1;
-            String superMsg = String.format("You now have %d super(s) left", this.numSupers);
+            String superMsg = String.format("You now have %d super(s) left", numSupers);
             Toast.makeText(getContext(), superMsg, Toast.LENGTH_SHORT).show();
             endEnemies();
         }
@@ -259,11 +259,11 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
     public void updateSettings(int difficulty, int powerups, int ammo, String username) {
         theDifficulty = difficulty;
-        if (theDifficulty == 1) {
+        if (theDifficulty == 0) {
             numRocks = 2;
-        }else if(theDifficulty == 2) {
+        }else if(theDifficulty == 1) {
             numRocks = 5;
-        }else if(theDifficulty == 3) {
+        }else if(theDifficulty == 2) {
             numRocks = 7;
         }
 

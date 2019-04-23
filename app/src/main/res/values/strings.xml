@@ -18,4 +18,9 @@
     <string name="version">Version %.1f</string>
     <string name="game_over">Game Over</string>
     <string name="score">Score %.1f</string>
+    <string name="help">HOW TO PLAY</string>
+    <string name="returnToGame">Return To Game</string>
+    <string name="help_one">Tap to move there!</string>
+    <string name="help_two">Avoid these!</string>
+    <string name="help_three">The longer you survive, the higher your score!</string>
 </resources>

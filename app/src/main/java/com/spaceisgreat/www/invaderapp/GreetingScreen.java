@@ -13,6 +13,7 @@ public class GreetingScreen extends AppCompatActivity {
     private TextView title;
     private TextView version;
     private Button play;
+    private Button help;
     public final double VERSION = 1.0;
 
 
@@ -23,6 +24,12 @@ public class GreetingScreen extends AppCompatActivity {
         }
     };
 
+    private View.OnClickListener clickHelp = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            clickedHelp();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,11 @@ public class GreetingScreen extends AppCompatActivity {
         //Button
         play = findViewById(R.id.playGame);
         play.setOnClickListener(clickPlaygame);
+
+        //How to play button
+        help = findViewById(R.id.help);
+        help.setOnClickListener(clickHelp);
+
     }
 
 
@@ -48,5 +60,10 @@ public class GreetingScreen extends AppCompatActivity {
     public void clickedPlaygame(){
         Intent game = new Intent(this, MainActivity.class);
         this.startActivity(game);
+    }
+
+    public void clickedHelp(){
+        Intent help = new Intent(this, HelpActivity.class);
+        this.startActivity(help);
     }
 }
