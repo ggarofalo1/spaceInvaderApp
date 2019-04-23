@@ -206,17 +206,16 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     }
     public void startEnemies() { //initializes the enemies
 
-        int someX;
-        Random generator = new Random();
         Bitmap rockBitmap1 = BitmapFactory.decodeResource(this.getResources(),R.drawable.rock50x50);
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         screenWidth = size.x;
+        int someX = screenWidth/(numRocks + 1);
         for(int i = 0; i < numRocks; i++) {
-            someX = generator.nextInt(screenWidth/(i+1)) + 1;
-            rocks[i] = new Rock(this, rockBitmap1, someX, -50);
+
+            rocks[i] = new Rock(this, rockBitmap1, (someX * (i+1)), -50);
             switch(theDifficulty) {
                 case 0:
                     System.out.println(theDifficulty);

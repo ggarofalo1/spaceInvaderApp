@@ -41,6 +41,8 @@
             android:gravity="bottom|center"
             android:text="@string/returnToGame"
             android:textColor="@color/colorTimer"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/helpTitle" />
 
