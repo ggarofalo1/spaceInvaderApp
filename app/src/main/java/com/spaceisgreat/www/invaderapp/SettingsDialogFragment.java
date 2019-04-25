@@ -14,7 +14,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 public class SettingsDialogFragment extends DialogFragment {
     private EditText usernameEditText;
     private SeekBar difficultySeekbar;
-    private SeekBar ammoSeekbar;
     private SeekBar powerupSeekbar;
     private GameSurface gamesurface;
 
@@ -31,11 +30,9 @@ public class SettingsDialogFragment extends DialogFragment {
 
         difficultySeekbar = (SeekBar) settingsDialogView.findViewById(R.id.difficultySeekbar);
         usernameEditText = (EditText) settingsDialogView.findViewById(R.id.usernameEditText);
-        ammoSeekbar = (SeekBar) settingsDialogView.findViewById(R.id.ammoSeekbar);
         powerupSeekbar = (SeekBar) settingsDialogView.findViewById(R.id.powerupSeekbar);
 
         difficultySeekbar.setOnSeekBarChangeListener(difficultyChangedListener);
-        ammoSeekbar.setOnSeekBarChangeListener(ammoChangedListener);
         powerupSeekbar.setOnSeekBarChangeListener(powerupChangedListener);
 
         builder.setPositiveButton(R.string.accept_settings,
@@ -43,7 +40,7 @@ public class SettingsDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         username = usernameEditText.getText().toString();
                         gamesurface = new GameSurface(getContext());
-                        gamesurface.updateSettings(difficulty, powerups, ammo, username);
+                        gamesurface.updateSettings(difficulty, powerups, username);
                     }
                 }
         );
@@ -75,24 +72,6 @@ public class SettingsDialogFragment extends DialogFragment {
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {}
-    };
-
-    private final OnSeekBarChangeListener ammoChangedListener = new OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-            ammo = progress;
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
     };
 
     private final OnSeekBarChangeListener powerupChangedListener = new OnSeekBarChangeListener() {

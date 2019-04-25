@@ -23,8 +23,6 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import java.util.Random;
-
 /*
 simulates the surface of the game is an extension of surface view
  */
@@ -37,7 +35,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private Context context;
 
     private static int theDifficulty = 0;
-    private static int numAmmo = 1000;
     private static int numSupers = 2;
     private static int numRocks = 2;
     private static String theUsername = "";
@@ -271,7 +268,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void updateSettings(int difficulty, int powerups, int ammo, String username) {
+    public void updateSettings(int difficulty, int powerups, String username) {
         theDifficulty = difficulty;
         if (theDifficulty == 0) {
             numRocks = 2;
@@ -282,7 +279,6 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         numSupers = powerups;
-        numAmmo = ammo;
         theUsername = username;
     }
 
