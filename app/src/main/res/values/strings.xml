@@ -23,5 +23,6 @@
     <string name="help_one">Tap to move there!</string>
     <string name="help_two">Avoid these!</string>
     <string name="help_three">The longer you survive, the higher your score!</string>
-    <string name="hscore">"Score "</string>
+    <string name="hscore">High Score %.1f</string>
+    <string name="huser">By:</string>
 </resources>

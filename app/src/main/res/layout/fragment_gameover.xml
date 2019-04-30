@@ -17,7 +17,7 @@
         android:id="@+id/displayscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_row="0"
+        android:layout_row="2"
         android:layout_column="0"
         android:layout_columnSpan="2"
         android:layout_marginRight="40dp"
@@ -30,7 +30,7 @@
         android:id="@+id/displayhighscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_row="1"
+        android:layout_row="0"
         android:layout_column="0"
         android:layout_columnSpan="2"
         android:layout_marginRight="40dp"
@@ -40,10 +40,23 @@
         android:textColor="@color/colorTimer"/>
 
     <TextView
+        android:id="@+id/displayhighuser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_marginRight="40dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/huser"
+        android:textSize="36sp"
+        android:textColor="@color/colorTimer"/>
+
+    <TextView
         android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_row="2"
+        android:layout_row="3"
         android:layout_column="0"
         android:layout_gravity="center_horizontal"
         android:inputType="textPersonName"
@@ -59,7 +72,7 @@
         android:id="@+id/usernameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_row="1"
+        android:layout_row="3"
         android:layout_column="1"
         android:layout_gravity="fill_horizontal"
         android:backgroundTint="@color/colorTimer"
