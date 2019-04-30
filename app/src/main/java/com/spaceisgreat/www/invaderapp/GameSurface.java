@@ -1,18 +1,15 @@
 package com.spaceisgreat.www.invaderapp;
 
-import android.app.AlertDialog;
-import android.content.ContentProvider;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -35,7 +32,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     private Player player;
     private Rock[] rocks;
     private Context context;
-
+    private MediaPlayer backgroundSong, deathSound;
     private static int theDifficulty = 0;
     private static int numSupers = 2;
     private static int numRocks = 2;
@@ -181,6 +178,9 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         this.gameThread = new GameThread(this,holder);
         this.gameThread.setRunning(true);
         this.gameThread.start();
+        backgroundSong = MediaPlayer.create(getContext(), R.raw.background);
+        backgroundSong.start();
+        backgroundSong.setLooping(true);
     }
 
     // Implements method of SurfaceHolder.Callback
@@ -195,6 +195,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
         boolean retry = true;
         while(retry) {
             try {
+                backgroundSong.release();
                 this.gameThread.setRunning(false);
                 this.gameThread.join();
                 retry = false;
@@ -287,6 +288,9 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
     //pop up alerting the user
     public void gameOver(){
 
+        //play death sound
+        deathSound = MediaPlayer.create(getContext(), R.raw.death);
+        deathSound.start();
         //start end game  dialog
         EndGameDialogFragment endDialog = new EndGameDialogFragment();
         FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
@@ -298,6 +302,7 @@ public class GameSurface extends SurfaceView implements SurfaceHolder.Callback {
 
         endDialog.show(fm, "Game Over");
         newGame();
+        deathSound.release();
     }
 
     public void newGame(){

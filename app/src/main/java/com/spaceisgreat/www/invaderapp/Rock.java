@@ -2,7 +2,6 @@ package com.spaceisgreat.www.invaderapp;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import java.util.Random;
 
 public class Rock extends GameObject {
 
