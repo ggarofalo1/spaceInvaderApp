@@ -38,8 +38,8 @@ public class EndGameDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle bundle) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),R.style.AlertDialogStyle);
-        final View gameoverDialogView = getActivity().getLayoutInflater().inflate(R.layout.fragment_gameover, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final View gameoverDialogView = getActivity( ).getLayoutInflater().inflate(R.layout.fragment_gameover, null);
         builder.setView(gameoverDialogView);
 
         builder.setTitle(R.string.game_over);

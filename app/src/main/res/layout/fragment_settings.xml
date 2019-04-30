@@ -93,4 +93,17 @@
         android:layout_column="1"
         android:layout_gravity="fill_horizontal"
         android:max="5" />
+
+     <Button
+        android:id="@+id/resetscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_marginTop="10sp"
+        android:text="@string/resetScore"
+        android:layout_gravity="fill_horizontal"
+        android:textSize="20sp" />
+
 </GridLayout>

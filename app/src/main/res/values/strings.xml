@@ -5,7 +5,7 @@
     <string name="pref_header_general">Game Settings</string>
     <string name="pref_header_notifications">Records</string>
     <string name="pref_difficulty">Game Difficulty</string>
-    <string name="pref_username" translatable="false">Username</string>
+    <string name="pref_username">Username</string>
     <string name="pref_sum_name">This sets what the score is recorded under.</string>
     <string name="startgame_title">Start Game</string>
     <string name="powerups">Powerups Available</string>
@@ -25,4 +25,5 @@
     <string name="help_three">The longer you survive, the higher your score!</string>
     <string name="hscore">High Score %.1f</string>
     <string name="huser">By:</string>
+    <string name="resetScore">Reset Score</string>
 </resources>

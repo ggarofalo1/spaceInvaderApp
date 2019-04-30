@@ -60,6 +60,8 @@ public class GreetingScreen extends AppCompatActivity {
         help = findViewById(R.id.help);
         help.setOnClickListener(clickHelp);
 
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -96,9 +98,24 @@ public class GreetingScreen extends AppCompatActivity {
                     // contacts-related task you need to do.
                 } else {
 
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Toast.makeText(this, "Permission denied to use your External Storage", Toast.LENGTH_SHORT).show();
+                    //permission denied
+                    new AlertDialog.Builder(this)
+                            .setTitle("Permissions")
+                            .setMessage("Write External Storage Has Been Denied By User. This app Will not work without it.")
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                    System.exit(0);
+                                }
+                            })
+
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+                    Toast.makeText(this, "Permission denied to use your External Storage", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
